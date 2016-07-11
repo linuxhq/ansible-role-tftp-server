@@ -1,0 +1,66 @@
+# default: off
+# description: The tftp server serves files using the trivial file transfer \
+#	protocol.  The tftp protocol is often used to boot diskless \
+#	workstations, download configuration files to network-aware printers, \
+#	and to start the installation process for some operating systems.
+service tftp
+{
+{% if tftp_server_socket_type is defined %}
+	socket_type		= {{ tftp_server_socket_type }}
+{% else %}
+	socket_type		= dgram
+{% endif %}
+{% if tftp_server_protocol is defined %}
+	protocol		= {{ tftp_server_protocol }}
+{% else %}
+	protocol		= udp
+{% endif %}
+{% if tftp_server_wait is defined %}
+{%   if tftp_server_wait %}
+	wait			= yes
+{%   else %}
+	wait			= no
+{%   endif %}
+{% else %}
+	wait			= yes
+{% endif %}
+{% if tftp_server_user is defined %}
+	user			= {{ tftp_server_user }}
+{% else %}
+	user			= root
+{% endif %}
+{% if tftp_server_server is defined %}
+	server			= {{ tftp_server_server }}
+{% else %}
+	server			= /usr/sbin/in.tftpd
+{% endif %}
+{% if tftp_server_server_args is defined %}
+	server_args		= {{ tftp_server_server_args }}
+{% else %}
+	server_args		= -s /var/lib/tftpboot
+{% endif %}
+{% if tftp_server_disable is defined %}
+{%   if tftp_server_disable %}
+	disable			= yes
+{%   else %}
+	disable			= no
+{%   endif %}
+{% else %}
+	disable			= yes
+{% endif %}
+{% if tftp_server_per_source is defined %}
+	per_source		= {{ tftp_server_per_source }}
+{% else %}
+	per_source		= 11
+{% endif %}
+{% if tftp_server_cps is defined %}
+	cps			= {{ tftp_server_cps|join(' ') }}
+{% else %}
+	cps			= 100 2
+{% endif %}
+{% if tftp_server_flags is defined %}
+	flags			= {{ tftp_server_flags }}
+{% else %}
+	flags			= IPv4
+{% endif %}
+}
