@@ -1,17 +1,17 @@
 ---
 - name: Ensure that the tftp-server package is installed
   tags: tftp-server
+  become: true
   yum:
     name: "{{ item }}"
     state: present
-    update_cache: yes
   register: tftp_server_yum
   with_items:
     - tftp
     - tftp-server
 
 - block:
-    - name: Applying tftp-server configuration
+    - name: Applying tftp-server configurations
       template:
         src: "{{ item.src }}"
         dest: "{{ item.dst }}"
@@ -22,11 +22,12 @@
       with_items:
         - { src: tftp.j2, dst: /etc/xinetd.d/tftp }
 
-    - name: Enable and start the xinetd service
+    - name: Enable and start the xinetd service on boot
       service:
         enabled: yes
         name: xinetd
         state: started
   tags: tftp-server
+  become: true
   when: tftp_server_yum|success
 ...

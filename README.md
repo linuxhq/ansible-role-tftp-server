@@ -12,7 +12,7 @@ None
 
 Available variables are listed below, along with default values:
 
-    tftp_server_cps: [ '100', '2' ]
+    tftp_server_cps: 100 2
     tftp_server_disable: True
     tftp_server_flags: IPv4
     tftp_server_per_source: 11
@@ -38,7 +38,7 @@ None
 
 ## License
 
-BSD
+GPLv3
 
 ## Author Information
 
