@@ -10,24 +10,25 @@
     - tftp
     - tftp-server
 
-- block:
-    - name: Applying tftp-server configurations
-      template:
-        src: "{{ item.src }}"
-        dest: "{{ item.dst }}"
-        owner: root
-        group: root
-        mode: 0644
-      notify: restart xinetd
-      with_items:
-        - { src: tftp.j2, dst: /etc/xinetd.d/tftp }
-
-    - name: Enable and start the xinetd service on boot
-      service:
-        enabled: yes
-        name: xinetd
-        state: started
+- name: Attempting to overlay tftp-server configurations
   tags: tftp-server
   become: true
-  when: tftp_server_yum|success
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - { src: tftp.j2, dst: /etc/xinetd.d/tftp }
+  when: tftp_server_yum is success
+
+- name: Ensure that tftp-server is started and enabled on boot
+  tags: tftp-server
+  become: true
+  service:
+    enabled: yes
+    name: xinetd
+    state: started
+  when: tftp_server_yum is success
 ...

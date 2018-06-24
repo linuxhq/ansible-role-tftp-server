@@ -1,17 +1,14 @@
-# default: off
-# description: The tftp server serves files using the trivial file transfer \
-#	protocol.  The tftp protocol is often used to boot diskless \
-#	workstations, download configuration files to network-aware printers, \
-#	and to start the installation process for some operating systems.
+# {{ ansible_managed }}
+
 service tftp
 {
 	socket_type		= {{ tftp_server_socket_type }}
 	protocol		= {{ tftp_server_protocol }}
-	wait			= {{ 'yes' if tftp_server_wait is defined and tftp_server_wait else 'no' }}
+	wait			= {{ 'yes' if tftp_server_wait|bool else 'no' }}
 	user			= {{ tftp_server_user }}
 	server			= {{ tftp_server_server }}
 	server_args		= {{ tftp_server_server_args }}
-	disable			= {{ 'yes' if tftp_server_disable is defined and tftp_server_disable else 'no' }}
+	disable			= {{ 'yes' if tftp_server_disable|bool else 'no' }}
 	per_source		= {{ tftp_server_per_source }}
 	cps			= {{ tftp_server_cps }}
 	flags			= {{ tftp_server_flags }}

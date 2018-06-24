@@ -1,6 +1,6 @@
 ---
 tftp_server_cps: 100 2
-tftp_server_disable: True
+tftp_server_disable: true
 tftp_server_flags: IPv4
 tftp_server_per_source: 11
 tftp_server_protocol: udp
@@ -8,5 +8,5 @@ tftp_server_socket_type: dgram
 tftp_server_server: /usr/sbin/in.tftpd
 tftp_server_server_args: '-s /var/lib/tftpboot'
 tftp_server_user: root
-tftp_server_wait: True
+tftp_server_wait: true
 ...
