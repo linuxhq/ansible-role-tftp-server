@@ -1,7 +1,7 @@
-# ansible-role-tftp-server
+# ansible-role-tftp_server
 
-[![Build Status](https://travis-ci.org/linuxhq/ansible-role-tftp-server.svg?branch=master)](https://travis-ci.org/linuxhq/ansible-role-tftp-server)
-[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-tftp--server-blue.svg?style=flat)](https://galaxy.ansible.com/linuxhq/tftp-server)
+[![Build Status](https://travis-ci.org/linuxhq/ansible-role-tftp_server.svg?branch=master)](https://travis-ci.org/linuxhq/ansible-role-tftp_server)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-tftp_server-blue.svg?style=flat)](https://galaxy.ansible.com/linuxhq/tftp_server)
 [![License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](COPYING)
 
 RHEL/CentOS - Trivial File Transfer Protocol
@@ -37,7 +37,7 @@ None
 
     - hosts: servers
       roles:
-        - role: linuxhq.tftp-server
+        - role: linuxhq.tftp_server
           tftp_server_disable: false
 
 ## License

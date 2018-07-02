@@ -1,6 +1,6 @@
 ---
 - name: Ensure that the tftp-server package is installed
-  tags: tftp-server
+  tags: tftp_server
   become: true
   yum:
     name: "{{ item }}"
@@ -11,7 +11,7 @@
     - tftp-server
 
 - name: Attempting to overlay tftp-server configurations
-  tags: tftp-server
+  tags: tftp_server
   become: true
   template:
     src: "{{ item.src }}"
@@ -24,7 +24,7 @@
   when: tftp_server_yum is success
 
 - name: Ensure that tftp-server is started and enabled on boot
-  tags: tftp-server
+  tags: tftp_server
   become: true
   service:
     enabled: yes

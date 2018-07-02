@@ -1,6 +1,7 @@
 ---
 dependencies: []
 galaxy_info:
+  role_name: tftp_server
   author: tkimball83
   description: RHEL/CentOS - Trivial File Transfer Protocol
   license: GPLv3

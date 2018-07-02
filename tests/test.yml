@@ -2,5 +2,5 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-role-tftp-server
+    - ansible-role-tftp_server
 ...
